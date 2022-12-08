@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveEmail } from '../redux/actions';
+import { changeEmail } from '../redux/actions/index';
 
 class Login extends Component {
   state = {
-    inputEmail: '',
+    email: '',
     inputPassword: '',
     btnDisabled: true,
   };
 
   btnValidation = () => {
-    const { inputEmail, inputPassword } = this.state;
+    const { email, inputPassword } = this.state;
     const MIN_PASSWORD_LENGTH = 5;
     if (
-      inputEmail.includes('@')
-      && inputEmail.includes('.com')
+      email.includes('@')
+      && email.includes('.com')
       && inputPassword.length > MIN_PASSWORD_LENGTH) {
       this.setState({ btnDisabled: false });
+    } else {
+      this.setState({ btnDisabled: true });
     }
   };
 
@@ -30,8 +32,8 @@ class Login extends Component {
 
   handleClick = () => {
     const { dispatch, history } = this.props;
-    const { inputEmail } = this.state;
-    dispatch(saveEmail(inputEmail));
+    const { email } = this.state;
+    dispatch(changeEmail(email));
     return history.push('/carteira');
   };
 
@@ -39,13 +41,13 @@ class Login extends Component {
     const { btnDisabled } = this.state;
     return (
       <form>
-        <div className="inputEmail">
-          <label htmlFor="inputEmail">
+        <div className="email">
+          <label htmlFor="email">
             Email:
             <input
               type="email"
-              id="inputEmail"
-              name="inputEmail"
+              id="email"
+              name="email"
               data-testid="email-input"
               placeholder="Email"
               onChange={ this.handleChange }
