@@ -2,11 +2,11 @@
 
 export const REQUEST_CHANGE_EMAIL = 'REQUEST_CHANGE_EMAIL';
 
-const changeEmail = () => ({
+const changeEmail = (inputEmail) => ({
   type: REQUEST_CHANGE_EMAIL,
-  email,
+  email: inputEmail,
 });
 
-export const saveEmail = () => () => (dispatch) => {
-  dispatch(changeEmail());
+export const saveEmail = (inputEmail) => (dispatch) => {
+  dispatch(changeEmail(inputEmail));
 };

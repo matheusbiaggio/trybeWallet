@@ -8,10 +8,11 @@ export const INITIAL_STATE = {
 
 const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case REQUEST_CHANGE_EMAIL: return {
-    ...state,
-    email: action.email,
-  };
+  case REQUEST_CHANGE_EMAIL:
+    return {
+      ...state,
+      email: action.email,
+    };
   default: return {
     ...state,
   };
