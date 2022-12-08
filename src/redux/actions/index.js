@@ -7,8 +7,6 @@ const changeEmail = () => ({
   email,
 });
 
-export const saveEmail = () => () => {
-  return async (dispatch) => {
-    dispatch(changeEmail());
-  }
+export const saveEmail = () => () => (dispatch) => {
+  dispatch(changeEmail());
 };
