@@ -11,7 +11,6 @@ class Header extends Component {
   render() {
     const { email } = this.props;
     const { totalExpense, currency } = this.state;
-    console.log(email);
     return (
       <div>
         <p data-testid="email-field">{email}</p>
