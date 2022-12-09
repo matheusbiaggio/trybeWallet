@@ -21,8 +21,8 @@ class Wallet extends React.Component {
   filterCodeCurrencies = async () => {
     const currencies = await this.fetchCurrenciesFromAPI();
     delete currencies.USDT;
-    const currenciesArray = Object.keys(currencies);
-    return currenciesArray;
+    const currenciesCode = Object.keys(currencies);
+    return currenciesCode;
   };
 
   render() {

@@ -2,6 +2,7 @@
 
 export const REQUEST_CHANGE_EMAIL = 'REQUEST_CHANGE_EMAIL';
 export const REQUEST_CURRENCIES_API = 'REQUEST_CURRENCIES_API';
+export const REQUEST_EXPENSE = 'REQUEST_EXPENSE';
 
 export const changeEmail = (inputEmail) => ({
   type: REQUEST_CHANGE_EMAIL,
@@ -11,4 +12,9 @@ export const changeEmail = (inputEmail) => ({
 export const getCurrencies = (currenciesArray) => ({
   type: REQUEST_CURRENCIES_API,
   currencies: currenciesArray,
+});
+
+export const addExpense = (expenseObj) => ({
+  type: REQUEST_EXPENSE,
+  expenses: expenseObj,
 });

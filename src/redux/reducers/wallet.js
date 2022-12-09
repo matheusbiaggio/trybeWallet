@@ -1,6 +1,6 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 
-import { REQUEST_CURRENCIES_API } from '../actions/index';
+import { REQUEST_CURRENCIES_API, REQUEST_EXPENSE } from '../actions/index';
 
 export const INITIAL_STATE = {
   currencies: [], // array de string
@@ -16,6 +16,11 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       currencies: action.currencies,
+    };
+  case REQUEST_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.expenses],
     };
   default: return {
     ...state,
