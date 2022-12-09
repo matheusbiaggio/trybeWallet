@@ -6,7 +6,7 @@ import { addExpense } from '../redux/actions';
 class WalletForm extends Component {
   state = {
     id: 0,
-    value: 0,
+    value: '',
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
@@ -31,6 +31,7 @@ class WalletForm extends Component {
     const { dispatch } = this.props;
     const exchangeRates = await this.fetchCurrenciesFromAPI();
     const askCurrency = exchangeRates[`${currency}`].ask;
+    const nameCoin = exchangeRates[`${currency}`].name;
     const expenseObj = {
       id,
       value,
@@ -39,6 +40,7 @@ class WalletForm extends Component {
       method,
       tag,
       ask: askCurrency,
+      coin: nameCoin,
       exchangeRates,
     };
     dispatch(addExpense(expenseObj));
@@ -111,9 +113,9 @@ class WalletForm extends Component {
             data-testid="method-input"
             onChange={ this.handleChange }
           >
-            <option value="money">Dinheiro</option>
-            <option value="creditCard">Cartão de crédito</option>
-            <option value="debitCard">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label htmlFor="tag">
@@ -125,11 +127,11 @@ class WalletForm extends Component {
             data-testid="tag-input"
             onChange={ this.handleChange }
           >
-            <option value="food">Alimentação</option>
-            <option value="leisure">Lazer</option>
-            <option value="work">Trabalho</option>
-            <option value="transport">Transporte</option>
-            <option value="health">Saúde</option>
+            <option value="Dinheiro">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
         <button
