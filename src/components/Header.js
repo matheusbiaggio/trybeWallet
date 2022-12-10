@@ -17,7 +17,7 @@ class Header extends Component {
       }
       return totalExpenses.toFixed(2);
     }
-    return totalExpenses;
+    return totalExpenses.toFixed(2);
   };
 
   render() {
