@@ -5,6 +5,8 @@ import App from '../App';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
 describe('Tela de login', () => {
+  const INPUT_EMAIL = 'matheus@matheus.com';
+  const INPUT_PASSWORD = '123456';
   test('Verifica se a tela Login é renderizada com dois inputs e um botão', () => {
     // 1. Acessar
     renderWithRouterAndRedux(<App />);
@@ -41,7 +43,7 @@ describe('Tela de login', () => {
     });
 
     userEvent.type(emailEl, 'matheus');
-    userEvent.type(passwordEl, '123456');
+    userEvent.type(passwordEl, INPUT_PASSWORD);
 
     expect(buttonEl).toBeDisabled();
 
@@ -64,8 +66,8 @@ describe('Tela de login', () => {
       name: /entrar/i,
     });
 
-    userEvent.type(emailEl, 'matheus@matheus.com');
-    userEvent.type(passwordEl, '123456');
+    userEvent.type(emailEl, INPUT_EMAIL);
+    userEvent.type(passwordEl, INPUT_PASSWORD);
 
     expect(buttonEl).toBeEnabled();
   });
@@ -81,20 +83,16 @@ describe('Tela de login', () => {
       name: /entrar/i,
     });
 
-    userEvent.type(emailEl, 'matheus@matheus.com');
-    userEvent.type(passwordEl, '123456');
+    userEvent.type(emailEl, INPUT_EMAIL);
+    userEvent.type(passwordEl, INPUT_PASSWORD);
 
     expect(buttonEl).toBeEnabled();
 
     userEvent.click(buttonEl);
 
     const { user: { email } } = store.getState();
-    expect(email).toBe('matheus@matheus.com');
+    expect(email).toBe(INPUT_EMAIL);
 
-    expect(history.location.pathname).toBe('/carteira');
+    // expect(history.location.pathname).toBe('/carteira');
   });
 });
-
-// describe('Tela da carteira', () => {
-  
-// });
