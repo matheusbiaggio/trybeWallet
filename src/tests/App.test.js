@@ -6,6 +6,11 @@ import App from '../App';
 import mockData from './helpers/mockData';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
+const INPUT_EMAIL = 'matheus@matheus.com';
+const INPUT_PASSWORD = '123456';
+const VALUE_INPUT = 'value-input';
+const DESCRIPTION_INPUT = 'description-input';
+
 const firstExpense = {
   id: 0,
   value: '1',
@@ -31,8 +36,6 @@ const INITIAL_STATE = {
 };
 
 describe('Tela de login', () => {
-  const INPUT_EMAIL = 'matheus@matheus.com';
-  const INPUT_PASSWORD = '123456';
   test('Verifica se a tela Login é renderizada com dois inputs e um botão', () => {
     // 1. Acessar
     renderWithRouterAndRedux(<App />);
@@ -141,8 +144,8 @@ describe('Tela da carteira', () => {
   test('FORM - Verifica se existe os inputs de valor gasto, descrição, tipo de moeda, modo de pagamento, tipo de despesa e um botão', () => {
     renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
 
-    const amountSpentEl = screen.getByTestId('value-input');
-    const descriptionEL = screen.getByTestId('description-input');
+    const amountSpentEl = screen.getByTestId(VALUE_INPUT);
+    const descriptionEL = screen.getByTestId(DESCRIPTION_INPUT);
     const coinEl = screen.getByTestId('currency-input');
     const paymentMethodEl = screen.getByTestId('method-input');
     const typeExpenseEl = screen.getByTestId('tag-input');
@@ -165,8 +168,8 @@ describe('Tela da carteira', () => {
     const codeCurrencyEl = screen.getByTestId('header-currency-field');
 
     // FORM
-    const amountSpentEl = screen.getByTestId('value-input');
-    const descriptionEL = screen.getByTestId('description-input');
+    const amountSpentEl = screen.getByTestId(VALUE_INPUT);
+    const descriptionEL = screen.getByTestId(DESCRIPTION_INPUT);
     const coinEl = screen.getByTestId('currency-input');
     const paymentMethodEl = screen.getByTestId('method-input');
     const typeExpenseEl = screen.getByTestId('tag-input');
@@ -193,8 +196,8 @@ describe('Tela da carteira', () => {
 
     userEvent.click(buttonEl);
 
-    expect(screen.getByTestId('value-input')).toHaveTextContent('');
-    expect(screen.getByTestId('description-input')).toHaveTextContent('');
+    expect(screen.getByTestId(VALUE_INPUT)).toHaveTextContent('');
+    expect(screen.getByTestId(DESCRIPTION_INPUT)).toHaveTextContent('');
 
     userEvent.type(amountSpentEl, '456');
     userEvent.type(descriptionEL, 'Segundo');
