@@ -38,11 +38,17 @@ class Table extends Component {
                         <td>{element.tag}</td>
                         <td>{element.method}</td>
                         <td>{(parseFloat(element.value)).toFixed(2)}</td>
-                        <td>{element.coin}</td>
-                        <td>{(parseFloat(element.ask)).toFixed(2)}</td>
+                        <td>{element.exchangeRates[`${element.currency}`].name}</td>
+                        <td>
+                          {(parseFloat(element.exchangeRates[`${element.currency}`].ask))
+                            .toFixed(2)}
+
+                        </td>
                         <td>
                           {(parseFloat(element.value)
-                          * parseFloat(element.ask)).toFixed(2)}
+                            * parseFloat(element
+                              .exchangeRates[`${element.currency}`].ask))
+                            .toFixed(2)}
                         </td>
                         <td>Real</td>
                         <td>

@@ -119,7 +119,9 @@ describe('Tela de login', () => {
     const { user: { email } } = store.getState();
     expect(email).toBe(INPUT_EMAIL);
 
-    expect(history.location.pathname).toBe('/carteira');
+    expect(screen.getByText(/despesa total:/i)).toBeInTheDocument();
+
+    // expect(history.location.pathname).toBe('/carteira');
   });
 });
 
@@ -189,27 +191,29 @@ describe('Tela da carteira', () => {
     expect(amountSpentEl.value).toEqual('123');
     expect(descriptionEL.value).toEqual('Primeiro');
 
-    act(() => userEvent.click(buttonEl));
+    userEvent.click(buttonEl);
 
-    expect(amountSpentEl.value).toEqual('');
-    expect(descriptionEL.value).toEqual('');
+    expect(screen.getByTestId('value-input')).toHaveTextContent('');
+    expect(screen.getByTestId('description-input')).toHaveTextContent('');
 
     userEvent.type(amountSpentEl, '456');
     userEvent.type(descriptionEL, 'Segundo');
 
-    act(() => userEvent.click(buttonEl));
+    userEvent.click(buttonEl);
 
-    expect(amountSpentEl.value).toEqual('456');
-    expect(descriptionEL.value).toEqual('Segundo');
+    expect(amountSpentEl).toHaveTextContent('');
+    expect(descriptionEL).toHaveTextContent('');
 
     const firstExpenseDescriptonEL = await screen.findByText('Primeiro');
-    const secondExpenseDescriptonEL = await screen.findByText('Segundo');
+    const secondExpenseDescriptonEL = await screen.findByText('PrimeiroSegundo');
     expect(firstExpenseDescriptonEL).toBeInTheDocument();
     expect(secondExpenseDescriptonEL).toBeInTheDocument();
 
-    const firstButtonDeleteEl = screen.getAllByTestId('delete-btn');
-    expect(firstButtonDeleteEl).toHaveLength(2);
+    const allButtonDeleteEl = screen.getAllByTestId('delete-btn');
+    expect(allButtonDeleteEl).toHaveLength(2);
 
-    userEvent.click(firstButtonDeleteEl);
+    userEvent.click(allButtonDeleteEl[0]);
+
+    expect(screen.getAllByTestId('delete-btn')).toHaveLength(1);
   });
 });

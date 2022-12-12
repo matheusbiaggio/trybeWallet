@@ -12,8 +12,9 @@ class Header extends Component {
     let totalExpenses = 0.00;
     if (expenses.length > 0) {
       for (let i = 0; i < expenses.length; i += 1) {
+        const { currency } = expenses[i];
         totalExpenses += parseFloat(parseFloat(expenses[i].value)
-        * parseFloat(expenses[i].ask));
+        * parseFloat(expenses[i].exchangeRates[`${currency}`].ask));
       }
       return totalExpenses.toFixed(2);
     }

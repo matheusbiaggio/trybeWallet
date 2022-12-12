@@ -31,8 +31,6 @@ class WalletForm extends Component {
     const { dispatch } = this.props;
     const exchangeRates = await this.fetchCurrenciesFromAPI();
     delete exchangeRates.USDT;
-    const askCurrency = exchangeRates[`${currency}`].ask;
-    const nameCoin = exchangeRates[`${currency}`].name;
     const expenseObj = {
       id,
       value,
@@ -40,8 +38,6 @@ class WalletForm extends Component {
       currency,
       method,
       tag,
-      ask: askCurrency,
-      coin: nameCoin,
       exchangeRates,
     };
     dispatch(addExpense(expenseObj));
@@ -61,7 +57,7 @@ class WalletForm extends Component {
       value, description, currency, method, tag,
     } = this.state;
     return (
-      <div>
+      <form>
         <label htmlFor="value">
           Valor gasto
           <input
@@ -141,7 +137,7 @@ class WalletForm extends Component {
         >
           Adicionar despesa
         </button>
-      </div>
+      </form>
     );
   }
 }
