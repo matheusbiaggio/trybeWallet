@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
@@ -124,7 +124,9 @@ describe('Tela de login', () => {
 
     expect(screen.getByText(/despesa total:/i)).toBeInTheDocument();
 
-    // expect(history.location.pathname).toBe('/carteira');
+    waitFor(() => {
+      expect(history.location.pathname).toBe('/carteira');
+    });
   });
 });
 
@@ -199,10 +201,12 @@ describe('Tela da carteira', () => {
     expect(screen.getByTestId(VALUE_INPUT)).toHaveTextContent('');
     expect(screen.getByTestId(DESCRIPTION_INPUT)).toHaveTextContent('');
 
-    userEvent.type(amountSpentEl, '456');
-    userEvent.type(descriptionEL, 'Segundo');
+    waitFor(() => {
+      userEvent.type(amountSpentEl, '456');
+      userEvent.type(descriptionEL, 'Segundo');
 
-    userEvent.click(buttonEl);
+      userEvent.click(buttonEl);
+    });
 
     expect(amountSpentEl).toHaveTextContent('');
     expect(descriptionEL).toHaveTextContent('');
@@ -213,7 +217,10 @@ describe('Tela da carteira', () => {
     expect(secondExpenseDescriptonEL).toBeInTheDocument();
 
     const allButtonDeleteEl = screen.getAllByTestId('delete-btn');
-    expect(allButtonDeleteEl).toHaveLength(2);
+
+    waitFor(() => {
+      expect(allButtonDeleteEl).toHaveLength(2);
+    });
 
     userEvent.click(allButtonDeleteEl[0]);
 
