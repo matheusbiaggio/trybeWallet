@@ -164,12 +164,12 @@ describe('Tela da carteira', () => {
   test('HEADER - Verifica se o valor da despesa total é alterada', async () => {
     renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'], initialState: INITIAL_STATE });
 
-    // HEADER
+    // HEADER - Capturo os elementos do header
     const emailEl = screen.getByTestId('email-field');
     const totalCurrencyEl = screen.getByTestId('total-field');
     const codeCurrencyEl = screen.getByTestId('header-currency-field');
 
-    // FORM
+    // FORM - Capturo os elementos do form
     const amountSpentEl = screen.getByTestId(VALUE_INPUT);
     const descriptionEL = screen.getByTestId(DESCRIPTION_INPUT);
     const coinEl = screen.getByTestId('currency-input');
@@ -177,12 +177,12 @@ describe('Tela da carteira', () => {
     const typeExpenseEl = screen.getByTestId('tag-input');
     const buttonEl = screen.getByRole('button', { name: /Adicionar despesa/ });
 
-    // HEADER
+    // HEADER - Verifico se os elementos do header estão na tela
     expect(emailEl).toBeInTheDocument();
     expect(totalCurrencyEl).toBeInTheDocument();
     expect(codeCurrencyEl).toBeInTheDocument();
 
-    // FORM
+    // FORM - Verifico se os elementos do form estão na tela
     expect(amountSpentEl).toBeInTheDocument();
     expect(descriptionEL).toBeInTheDocument();
     expect(coinEl).toBeInTheDocument();
@@ -190,27 +190,35 @@ describe('Tela da carteira', () => {
     expect(typeExpenseEl).toBeInTheDocument();
     expect(buttonEl).toBeInTheDocument();
 
+    // Escrevo valores nos elementos do form
     userEvent.type(amountSpentEl, '123');
     userEvent.type(descriptionEL, 'Primeiro');
 
+    // Verifico se o valor escrito é o que foi escrito
     expect(amountSpentEl.value).toEqual('123');
     expect(descriptionEL.value).toEqual('Primeiro');
 
+    // Clico no botão para ver adicionar o elemento na tabela
     userEvent.click(buttonEl);
 
+    // Verifico se os inputs escritos ficaram vazios
     expect(screen.getByTestId(VALUE_INPUT)).toHaveTextContent('');
     expect(screen.getByTestId(DESCRIPTION_INPUT)).toHaveTextContent('');
 
+    // Escrevo novos valores nos inputs
     waitFor(() => {
       userEvent.type(amountSpentEl, '456');
       userEvent.type(descriptionEL, 'Segundo');
 
+      // Clico no botão para adicionar mais um elemento na tabela
       userEvent.click(buttonEl);
     });
 
+    // Verifico se os inputs estão vazios
     expect(amountSpentEl).toHaveTextContent('');
     expect(descriptionEL).toHaveTextContent('');
 
+    // Capturo os elementos na tabela
     const firstExpenseDescriptonEL = await screen.findByText('Primeiro');
     const secondExpenseDescriptonEL = await screen.findByText('PrimeiroSegundo');
     expect(firstExpenseDescriptonEL).toBeInTheDocument();
@@ -218,12 +226,15 @@ describe('Tela da carteira', () => {
 
     const allButtonDeleteEl = screen.getAllByTestId('delete-btn');
 
+    // Verifico o tamanho do array capturado dos botões deletes
     waitFor(() => {
       expect(allButtonDeleteEl).toHaveLength(2);
     });
 
+    // Clico no botão de exluir um elemento
     userEvent.click(allButtonDeleteEl[0]);
 
+    // Verifico o tamanho do array de botões delete
     expect(screen.getAllByTestId('delete-btn')).toHaveLength(1);
   });
 });
