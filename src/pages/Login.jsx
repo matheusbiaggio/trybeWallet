@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeEmail } from '../redux/actions/index';
+import AvailableButton from '../components/styledComponents/buttons/ButtonLogin';
+import WrapperCenter from '../components/styledComponents/wrapper/WrapperCenter';
+import Form from '../components/styledComponents/Form';
+import Input from '../components/styledComponents/inputs/inputsLogin';
 
 class Login extends Component {
   state = {
@@ -40,41 +44,34 @@ class Login extends Component {
   render() {
     const { btnDisabled } = this.state;
     return (
-      <form>
-        <div className="email">
-          <label htmlFor="email">
-            Email:
-            <input
-              type="email"
-              id="email"
-              name="email"
-              data-testid="email-input"
-              placeholder="Email"
-              onChange={ this.handleChange }
-            />
-          </label>
-        </div>
-        <div className="inputPassword">
-          <label htmlFor="inputPassword">
-            Senha:
-            <input
-              type="password"
-              id="inputPassword"
-              name="inputPassword"
-              data-testid="password-input"
-              placeholder="Senha"
-              onChange={ this.handleChange }
-            />
-          </label>
-        </div>
-        <button
-          type="button"
-          disabled={ btnDisabled }
-          onClick={ this.handleClick }
-        >
-          Entrar
-        </button>
-      </form>
+      <WrapperCenter>
+        <Form>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            data-testid="email-input"
+            placeholder="Email"
+            onChange={ this.handleChange }
+          />
+          <Input
+            type="password"
+            id="inputPassword"
+            name="inputPassword"
+            data-testid="password-input"
+            placeholder="Senha"
+            onChange={ this.handleChange }
+          />
+          <AvailableButton
+            type="button"
+            disabled={ btnDisabled }
+            onClick={ this.handleClick }
+          >
+            Entrar
+          </AvailableButton>
+
+        </Form>
+      </WrapperCenter>
     );
   }
 }

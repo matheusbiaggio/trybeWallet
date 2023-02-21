@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './redux/store';
 import * as serviceWorker from './serviceWorker';
+import GlobalStyle from './components/styledComponents/globalStyled';
 
 ReactDOM
   .createRoot(document.getElementById('root'))
@@ -13,6 +14,7 @@ ReactDOM
     <BrowserRouter>
       <Provider store={ store }>
         <App />
+        <GlobalStyle />
       </Provider>
     </BrowserRouter>,
   );
