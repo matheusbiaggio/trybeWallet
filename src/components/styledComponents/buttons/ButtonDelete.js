@@ -6,7 +6,7 @@ const Button = styled.button`
   color: rgb(253, 249, 243);
   font-weight: 600;
   text-transform: uppercase;
-  background: ${(props) => (props.disabled ? 'gray' : '#c5cba6')};
+  background: red;
   border: none;
   border-radius: 3px;
   outline: 0;
@@ -15,7 +15,7 @@ const Button = styled.button`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-out;
   :hover {
-    background: ${(props) => (props.disabled ? 'gray' : '#a8bb9a')};
+    background: #990000;
   }
 `;
 

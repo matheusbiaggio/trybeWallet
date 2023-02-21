@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeExpense } from '../redux/actions';
+import HeaderTable from './styledComponents/table/HeaderTable';
+import WrapperCenter from './styledComponents/wrapper/WrapperCenter';
+import TableS from './styledComponents/table/Table';
+import Button from './styledComponents/buttons/ButtonDelete';
+import BodyTable from './styledComponents/table/BodyTable';
 
 class Table extends Component {
   handleClick = (element) => {
@@ -12,9 +17,9 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <div>
-        <table>
-          <thead>
+      <WrapperCenter>
+        <TableS>
+          <HeaderTable>
             <tr>
               <th>Descrição</th>
               <th>Tag</th>
@@ -26,11 +31,11 @@ class Table extends Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
-          </thead>
+          </HeaderTable>
           {
             expenses.length
               ? (
-                <tbody>
+                <BodyTable>
                   {
                     expenses.map((element) => (
                       <tr key={ element.id }>
@@ -52,22 +57,22 @@ class Table extends Component {
                         </td>
                         <td>Real</td>
                         <td>
-                          <button
+                          <Button
                             type="button"
                             data-testid="delete-btn"
                             onClick={ () => this.handleClick(element) }
                           >
-                            Editar/Excluir
-                          </button>
+                            Excluir
+                          </Button>
                         </td>
                       </tr>
                     ))
                   }
-                </tbody>)
+                </BodyTable>)
               : <tbody />
           }
-        </table>
-      </div>
+        </TableS>
+      </WrapperCenter>
     );
   }
 }

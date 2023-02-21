@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import { getCurrencies } from '../redux/actions';
 import Table from '../components/Table';
+import WrapperCenter from '../components/styledComponents/wrapper/WrapperCenter';
 
 class Wallet extends React.Component {
   async componentDidMount() {
@@ -30,7 +31,9 @@ class Wallet extends React.Component {
     return (
       <div>
         <Header />
-        <WalletForm />
+        <WrapperCenter>
+          <WalletForm />
+        </WrapperCenter>
         <Table />
       </div>
     );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Form = styled.form`
+const LoginForm = styled.form`
   background: #93865a;
   margin: 0 auto;
   width: 100%;
@@ -11,4 +11,4 @@ const Form = styled.form`
   position: relative;
 `;
 
-export default Form;
+export default LoginForm;

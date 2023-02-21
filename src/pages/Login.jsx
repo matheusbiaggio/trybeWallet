@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeEmail } from '../redux/actions/index';
-import AvailableButton from '../components/styledComponents/buttons/ButtonLogin';
+import ButtonLogin from '../components/styledComponents/buttons/ButtonLogin';
 import WrapperCenter from '../components/styledComponents/wrapper/WrapperCenter';
-import Form from '../components/styledComponents/Form';
+import Form from '../components/styledComponents/form/LoginForm';
 import Input from '../components/styledComponents/inputs/inputsLogin';
 
 class Login extends Component {
@@ -62,13 +62,13 @@ class Login extends Component {
             placeholder="Senha"
             onChange={ this.handleChange }
           />
-          <AvailableButton
+          <ButtonLogin
             type="button"
             disabled={ btnDisabled }
             onClick={ this.handleClick }
           >
             Entrar
-          </AvailableButton>
+          </ButtonLogin>
 
         </Form>
       </WrapperCenter>
